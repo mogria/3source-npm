@@ -8,4 +8,4 @@ for t in "${tools[@]}"; do
     fi
 done
 
-exec "npm"
+exec "npm" "$@"
