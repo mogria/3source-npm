@@ -2,9 +2,9 @@
 
 This docker image provides:
 
-    * The `npm` package manager
-    * The `bower` package manager
-    * The `gulp` build tool
+ * The `npm` package manager
+ * The `bower` package manager
+ * The `gulp` build tool
 
 All the tools are run from within the `/data/www` directory.
 
