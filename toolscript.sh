@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tools=(npm gulp bower)
+tools=(npm gulp bower node)
 
 for t in "${tools[@]}"; do
     if [[ "$t" == "$1" ]]; then
