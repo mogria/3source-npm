@@ -2,8 +2,8 @@ FROM node:latest
 
 MAINTAINER "Mogria" <m0gr14@gmail.com>
 
-COPY toolscript.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/toolscript.sh
+ADD toolscript.sh /usr/bin
+RUN chmod +x /usr/bin/toolscript.sh
 
 RUN npm install -g bower gulp
 
