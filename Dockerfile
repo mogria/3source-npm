@@ -1,24 +1,30 @@
-FROM node:latest
+FROM mogria/3source-base:latest
 
 MAINTAINER "Mogria" <m0gr14@gmail.com>
 
-ENV RUN_AS 0
-
 COPY toolscript.sh /usr/bin/toolscript.sh
-COPY container-user.sh /usr/bin/container-user.sh
-COPY umask-wrapper.sh /usr/bin/umask-wrapper.sh
+ENV NODE_VERSION 5.1.0
 
-RUN wget -O /usr/bin/gosu "https://github.com/tianon/gosu/releases/download/1.7/gosu-$(dpkg --print-architecture)" && \
-    chmod +x /usr/bin/gosu && \
-    chmod +x /usr/bin/toolscript.sh && \
-    chmod +x /usr/bin/container-user.sh && \
-    chmod +x /usr/bin/umask-wrapper.sh
+RUN apk add --update curl && \
+    curl -sSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.gz > /root/node-v$NODE_VERSION.tar.gz && \
+    apk add --update \
+        g++ \
+        gcc \
+        git \
+        linux-headers \
+        make \
+        python && \
+    cd /root && \
+    tar xzf node-v$NODE_VERSION.tar.gz && \
+    rm node-v$NODE_VERSION.tar.gz && \
+    cd node-v$NODE_VERSION && \
+    ./configure && \
+    make &&  \
+    make install && \
+    cd .. && \
+    rm -r node-v$NODE_VERSION
 
-RUN npm install -g bower gulp
+RUN git config --system url."https://github.com".insteadOf "git://github.com" && \
+    npm install -g bower gulp
 
 VOLUME ["/data"]
-
-WORKDIR /data/www
-
-ENTRYPOINT ["umask-wrapper.sh", "container-user.sh", "toolscript.sh"]
-CMD ["npm"]
