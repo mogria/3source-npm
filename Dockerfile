@@ -27,4 +27,8 @@ RUN apk add --update curl && \
 RUN git config --system url."https://github.com".insteadOf "git://github.com" && \
     npm install -g bower gulp
 
+RUN mkdir -p /data/www
 VOLUME ["/data"]
+
+WORKDIR /data/www
+ENTRYPOINT ["umask-wrapper-sh", "container-user.sh", "toolscript.sh"]
