@@ -3,7 +3,7 @@ FROM mogria/3source-base:latest
 MAINTAINER "Mogria" <m0gr14@gmail.com>
 
 COPY toolscript.sh /usr/bin/toolscript.sh
-ENV NODE_VERSION 5.1.0
+ENV NODE_VERSION 5.1.1
 
 RUN apk add --update curl && \
     curl -sSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.gz > /root/node-v$NODE_VERSION.tar.gz && \
