@@ -31,4 +31,4 @@ RUN mkdir -p /data/www
 VOLUME ["/data"]
 
 WORKDIR /data/www
-ENTRYPOINT ["umask-wrapper-sh", "container-user.sh", "toolscript.sh"]
+ENTRYPOINT ["umask-wrapper.sh", "container-user.sh", "toolscript.sh"]
