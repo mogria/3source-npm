@@ -24,7 +24,8 @@ RUN apk add --update curl && \
     cd .. && \
     rm -r node-v$NODE_VERSION
 
-RUN git config --system url."https://github.com".insteadOf "git://github.com" && \
+RUN chmod +x /usr/bin/toolscript.sh && \
+    git config --system url."https://github.com".insteadOf "git://github.com" && \
     npm install -g bower gulp
 
 RUN mkdir -p /data/www
